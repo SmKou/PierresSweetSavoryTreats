@@ -13,7 +13,7 @@ public class HomeController : Controller
 
     public ActionResult Index()
     {
-        Dictionary<string, object> model = Dictionary<string, object>();
+        Dictionary<string, object> model = new Dictionary<string, object>();
         List<Treat> treats = _db.Treats.ToList();
         List<Flavor> flavors = _db.Flavors.ToList();
         model.Add("Treats", treats);

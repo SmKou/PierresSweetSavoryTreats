@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using Bakery.ViewModels;
 using Bakery.Models;
 
@@ -51,7 +54,7 @@ public class AccountController : Controller
 
     // [AllowAnonymous]
     [HttpPost]
-    public async Task<ActionResult> Register()
+    public async Task<ActionResult> Register(RegisterViewModel model)
     {
         return RedirectToAction("Index");
     }
@@ -64,7 +67,7 @@ public class AccountController : Controller
 
     // [AllowAnonymous]
     [HttpPost]
-    public async Task<ActionResult> Login()
+    public async Task<ActionResult> Login(LoginViewModel model)
     {
         return RedirectToAction("Index");
     }
