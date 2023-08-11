@@ -1,0 +1,53 @@
+@{
+    Layout = "_Layout";
+}
+@using Bakery.ViewModels;
+@model RegisterViewModel
+
+<main>
+    <section>
+        <h2>Log In</h2>
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @Html.ValidationSummary("Please fix the following error(s) and resubmit:")
+        }
+
+        @using (Html.BeginForm())
+        {
+            <div class="form-entry">
+                @Html.LabelFor(model => model.FirstName)
+                @Html.TextBoxFor(model => model.FirstName)
+            </div>
+            <div class="form-entry">
+                @Html.LabelFor(model => model.LastName)
+                @Html.TextBoxFor(model => model.LastName)
+            </div>
+            <div class="form-entry">
+                @Html.LabelFor(model => model.DOB)
+                @Html.EditorFor(model => model.DOB, htmlAttributes : new { @asp-for="SelectedDate", @max="@DateTime.Today.AddDays(-1).ToString("yyyy-MM-dd")", @pattern="\d{4}-\d{2}-\{2}" })
+            </div>
+            <div class="form-entry">
+                @Html.LabelFor(model => model.UserName)
+                @Html.EditorFor(model => model.UserName)
+            </div>
+            <div class="form-entry">
+                @Html.LabelFor(model => model.Email)
+                @Html.TextBoxFor(model => model.Email)
+            </div>
+            <div class="form-entry">
+                @Html.LabelFor(model => model.Password)
+                @Html.EditorFor(model => model.Password)
+            </div>
+            <div class="form-entry">
+                @Html.LabelFor(model => model.PasswordConfirm)
+                @Html.EditorFor(model => model.PasswordConfirm)
+            </div>
+            
+            <div class="form-submit">
+                <input type="submit" value="Login" />
+            </div>
+        }
+
+        <p>If you do not have an account, you need to @Html.ActionLink("Register", "Register").</p>
+    </section>
+</main>

@@ -1,0 +1,33 @@
+@{
+    Layout = "_Layout";
+}
+@using Bakery.ViewModels;
+@model LoginViewModel
+
+<main>
+    <section>
+        <h2>Log In</h2>
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @Html.ValidationSummary("Please fix the following error(s) and resubmit:")
+        }
+
+        @using (Html.BeginForm())
+        {
+            <div class="form-entry">
+                @Html.LabelFor(model => model.UserNameOrEmail)
+                @Html.TextBoxFor(model => model.UserNameOrEmail)
+            </div>
+            <div class="form-entry">
+                @Html.LabelFor(model => model.Password)
+                @Html.EditorFor(model => model.Password)
+            </div>
+            
+            <div class="form-submit">
+                <input type="submit" value="Login" />
+            </div>
+        }
+
+        <p>If you do not have an account, you need to @Html.ActionLink("Register", "Register").</p>
+    </section>
+</main>

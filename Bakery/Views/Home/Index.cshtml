@@ -11,7 +11,7 @@
         }
 
         <ul class="list-row">
-            @foreach (Flavor flavor in Model)
+            @foreach (Flavor flavor in Model["Flavors"])
             {
                 <li class="list-entry">@Html.ActionLink(@flavor.Name, "Details", "Flavors", new { id = flavor.FlavorId })</li>
             }
@@ -24,7 +24,7 @@
         }
 
         <ul class="list-row">
-            @foreach (Treat treat in Model)
+            @foreach (Treat treat in Model["Treats"])
             {
                 <li class="list-entry">@Html.ActionLink(@treat.Name, "Details", "Treats", new { id = treat.TreatId })</li>
             }

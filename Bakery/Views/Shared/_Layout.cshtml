@@ -12,24 +12,26 @@
 </head>
 <body>
     <header>
-        <h1>@Html.ActionLink("Pierre's Sweet and Savory Treats", "Account", "Login")<h1>
+        <h1>@Html.ActionLink("Pierre's Sweet and Savory Treats", "Login", "Account")</h1>
         <ul class="nav">
-            @if (!ViewBag.IsLoggedIn)
+            @if (ViewBag.IsLoggedIn == null)
             {
-                <li>@Html.ActionLink("Catalog", "Home", "Index")</li>
+                <li>@Html.ActionLink("Catalog", "Index", "Home")</li>
             }
-
-            @if (ViewBag.IsLoggedIn)
+            else
             {
-                <li>Hello @ViewBag.Name</li>
-                <li>@Html.ActionLink("Catalog", "Index", "Account")</li>
-                <li>@Html.ActionLink("Profile", "Details", "Account")</li>
-                <li>@Html.ActionLink("Logout", "LogOut", "Account")</li>
-            }
-            else if (!ViewBag.IsLoggedIn && ViewBag.OnAccount)
-            {
-                <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                @if (ViewBag.IsLoggedIn)
+                {
+                    <li>Hello @ViewBag.Name</li>
+                    <li>@Html.ActionLink("Catalog", "Index", "Account")</li>
+                    <li>@Html.ActionLink("Profile", "Details", "Account")</li>
+                    <li>@Html.ActionLink("Logout", "LogOut", "Account")</li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                    <li>@Html.ActionLink("Register", "Register", "Account")</li>
+                }
             }
         </ul>
     </header>

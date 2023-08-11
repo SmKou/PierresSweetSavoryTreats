@@ -69,11 +69,31 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<ActionResult> Login(LoginViewModel model)
     {
-        return RedirectToAction("Index");
+        if (!ModelState.IsValid)
+            return View(model);
+        else
+        {
+            string login = model.UserNameOrEmail;
+            using (var cxt = new BakeryContext())
+            {
+                var user = cxt.Users.FirstOrDefault(user => user.Email == login);
+                if (user != null)
+                    login = user.UserName;
+            }
+            Microsoft.AspNetCore.Identity.SignInResult result = await _signinManager.PasswordSignInAsync(model.login, model.Password, isPersistent: true, lockoutOnFailure: false);
+            if (result.Suceeded)
+                return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError("", "There is something wrong with your email or password. Please try again.");
+                return View(model);
+            }
+        }
     }
 
     public async Task<ActionResult> LogOut()
     {
+        await _signinManager.SignOutAsync();
         return RedirectToAction("Index", "Home");
     }
 }
