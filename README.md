@@ -14,7 +14,10 @@ By: Stella Marie
 
 Pierre's Sweet and Savory Treats is an MVC app for managing treats and flavors in a many-to-many relationship. With authentication and authorization implemented, users, likely bakery employees, can create, edit and delete treats and flavors offered. Anyone can view all treats and flavors and view their details.
 
+**NOTE**: If you would like to see or test the features with authentication and authorization, either click on the site name in the header (Pierre's Sweet and Savory Treats) or navigate to /Account/Login.
+
 - Users
+  - Register
   - Log in/out
   - Create, update and delete flavors and treats
 
@@ -22,13 +25,38 @@ Pierre's Sweet and Savory Treats is an MVC app for managing treats and flavors i
   - View all flavors and treats
   - View details
 
+**App Structure**
+
+- Account
+  - Index => View all items with Delete
+  - Create => Create, edit and join items
+  - Details => View and edit user details
+  - Login
+  - Register
+- Home
+  - Index => View all items
+- Flavors
+  - Details of flavor
+- Treats
+  - Details of Treat
+
 **Objectives**
 [] Implement all CRUD methods for at least one entity
 [] View both sides of many-to-many for either item
 [] Register, login and logout with identity
 [] Limit create, update and delete to authenticated users
-[] Build files and sensitive information in .gitignore
-[] Include instructions to create appsettings.json and setup project
+[x] Build files and sensitive information in .gitignore
+[x] Include instructions to create appsettings.json and setup project
+
+### Design Consideration
+
+As there are only two items (or entities) in this project, I grouped the functionalities that require authorization in the Account controller and views. However, if another item needed to be added, it would make no sense to remain compact, but then I would have a choice between keeping areas of the website separated by authorization levels or by the entities they address. With more joined and relational entities, there would be mixing between areas anyway if areas are separated by entities.
+
+If I had to scale this project, but keep or add more authorization levels, I would just adjust the current structure and build up to increasing levels of authorization. Unless instructed otherwise, I would prefer functionality to be grouped by roles in cascading degrees of authorization, subgrouped into entities, than group by entities and have roles and their authorizations scattered across them. The reason is because with any given entity, there's only five functions any one of them would serve: create, read, update, delete, and list. Most often create, update and delete are blocked from unauthorized access. Between viewing all entries of an entity and one, only two pages are really needed to serve these functions.
+
+Also, additional calculations would not be located in the controllers or views. I would place them in models to be called on by controllers before sending them to a user's browser. Controllers should only be used for requesting and submitting data, and designating which page and data set to send to the frontend. In the event that treats and flavors are extended to hundreds of thousands or millions of entries being amassed, I wouldn't ask for them all in the controller and send them to the frontend. I would put a cap on the quantity that can be sent, though the problem would be attaching the additional data sent without duplication in the frontend, when appended with javascript or in the html.
+
+More research needed.
 
 ## Complete Setup
 
