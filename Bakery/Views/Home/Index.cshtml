@@ -1,0 +1,33 @@
+@{
+    Layout = "_Layout";
+}
+@using Bakery.Models;
+
+<main>
+    <section>
+        @if (Model["Flavors"].Count == 0)
+        {
+            <p>No flavors are currently listed yet. Please check back later.</p>
+        }
+
+        <ul class="list-row">
+            @foreach (Flavor flavor in Model)
+            {
+                <li class="list-entry">@Html.ActionLink(@flavor.Name, "Details", "Flavors", new { id = flavor.FlavorId })</li>
+            }
+        </ul>
+    </section>
+    <section>
+        @if (Model["Treats"].Count == 0)
+        {
+            <p>No treats are currently listed yet. Please check back later.</p>
+        }
+
+        <ul class="list-row">
+            @foreach (Treat treat in Model)
+            {
+                <li class="list-entry">@Html.ActionLink(@treat.Name, "Details", "Treats", new { id = treat.TreatId })</li>
+            }
+        </ul>
+    </section>
+</main>
