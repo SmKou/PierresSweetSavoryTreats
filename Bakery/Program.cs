@@ -31,7 +31,7 @@ class Program
         builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddDefaultTokenProviders()
             .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<ToDoListContext>();
+            .AddEntityFrameworkStores<BakeryContext>();
 
         builder.Services.Configure<IdentityOptions>(options =>
         {
@@ -50,13 +50,6 @@ class Program
             options.Password.RequiredLength = 0;
             options.Password.RequiredUniqueChars = 0;
         });
-
-        builder.Services.AddAuhorization(options =>
-        {
-            options.AddPolicy("RequireAdministratorRole",
-            policy => policy.RequireRole("Librarian"))
-        });
-        builder.Services.AddAuthentication();
 
         WebApplication app = builder.Build();
 
