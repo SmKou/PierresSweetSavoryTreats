@@ -1,10 +1,16 @@
 @{
     Layout = "_Layout";
 }
-@using Bakery.Models;
-@model ProfileViewModel
+@using Bakery.ViewModels;
+@model AccountViewModel
 
 <main>
+    @if (ViewBag.Confirmation != null)
+    {
+        <div class="alert">
+            <p>@ViewBag.Confirmation</p>
+        </div>
+    }
     <section>
         <h3>Profile</h3>
         @if (!ViewData.ModelState.IsValid)
@@ -35,8 +41,12 @@
                 @Html.TextBoxFor(model => model.Email)
             </div>
             <div class="form-entry">
-                @Html.LabelFor(model => model.Password)
+                @Html.Label("Password", "Old Password")
                 @Html.EditorFor(model => model.Password)
+            </div>
+            <div class="form-entry">
+                @Html.Label("PasswordConfirm", "New Password")
+                @Html.EditorFor(model => model.PasswordConfirm)
             </div>
             
             <div class="form-submit">

@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Bakery.Models;
+namespace Bakery.ViewModels;
 
-public class ProfileViewModel
+public class AccountViewModel
 {
     [Required]
     [Display(Name = "First Name")]
@@ -30,4 +30,9 @@ public class ProfileViewModel
     [DataType(DataType.Password)]
     [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$", ErrorMessage = "Your password must contain at least 8 characters, a capital letter, a lowercase letter, a number and a special character.")]
     public string Password { get; set; }
+
+    [Required]
+    [DataType(DataType.Password)]
+    [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$", ErrorMessage = "Your password must contain at least 8 characters, a capital letter, a lowercase letter, a number and a special character.")]
+    public string PasswordConfirm { get; set; }
 }

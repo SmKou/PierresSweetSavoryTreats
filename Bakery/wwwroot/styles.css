@@ -81,11 +81,44 @@ h1 a {
 }
 
 main {
+    position: relative;
     width: 100%;
     padding-top: 9rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.alert {
+    position: absolute;
+    top: 8rem;
+    right: -16rem;
+    width: 20rem;
+    height: 4.8rem;
+    border: 0.1rem solid transparent;
+    border-radius: 1.2rem;
+    color: #222;
+    background: rgba(220, 220, 220, 0.3);
+    opacity: 1;
+}
+
+.alert::after {
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    color: white;
+    background: green;
+    content: "!";
+    z-index: 2;
+}
+
+.alert.hover {
+    right: 1.2rem;
+    border-color: #222;
+    transition: position 0.4s ease-in-out;
 }
 
 section {
@@ -100,9 +133,28 @@ h3 {
 
 .form-entry {
     width: 100%;
+    border-radius: 0.6rem;
     margin: 1.2rem 0;
     display: grid;
     grid-template-columns: 12rem 1fr;
+}
+
+.form-entry input {
+    padding-left: 0.6rem;
+}
+
+.details-form .input {
+    outline: 0;
+    border: 0.1rem solid transparent;
+    border-radius: 0.6rem;
+    color: #222;
+    background: transparent;
+}
+
+.details-form input:hover,
+.details-form input:focus {
+    border-color: #222;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .list-row {
