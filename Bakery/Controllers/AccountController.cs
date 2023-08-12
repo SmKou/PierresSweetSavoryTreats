@@ -89,7 +89,7 @@ public class AccountController : Controller
         }
 
         TempData["Confirmation"] = "Profile updated.";
-        return RedirectToAction("Details");
+        return RedirectToAction("Profile");
     }
 
     public IActionResult Register()
@@ -122,7 +122,7 @@ public class AccountController : Controller
             {
                 Microsoft.AspNetCore.Identity.SignInResult signinresult = await _signinManager.PasswordSignInAsync(rvm.UserName, rvm.Password, isPersistent: true, lockoutOnFailure: false);
                 if (signinresult.Succeeded)
-                    return RedirectToAction("Index", "Menu");
+                    return RedirectToAction("Index", "Inventory");
                 else
                     return RedirectToAction("Login");
             }
@@ -154,7 +154,7 @@ public class AccountController : Controller
 
             Microsoft.AspNetCore.Identity.SignInResult result = await _signinManager.PasswordSignInAsync(login, lvm.Password, isPersistent: true, lockoutOnFailure: false);
             if (result.Succeeded)
-                return RedirectToAction("Index", "Menu");
+                return RedirectToAction("Index", "Inventory");
             else
             {
                 ModelState.AddModelError("", "There is something wrong with your login or password. Please try again.");
