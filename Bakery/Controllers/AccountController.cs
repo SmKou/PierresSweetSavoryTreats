@@ -56,7 +56,33 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<ActionResult> Register(RegisterViewModel model)
     {
-        return RedirectToAction("Index");
+        if (!ModelState.IsValid)
+            return View(model);
+        else if (model.UserName == null || model.Email == null)
+        {
+            ModelState.AddModelError("", "You must include a username and an email.");
+            return View(model);
+        }
+        else
+        {
+            ApplicationUser user = new ApplicationUser
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                DOB = model.DOB
+            };
+            IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+                return RedirectToAction("Index");
+            else
+            {
+                foreach (IndentityError error in result.Errors)
+                    ModelState.AddModelError("", error.Description);
+                return View(model);
+            }
+        }
     }
 
     [AllowAnonymous]

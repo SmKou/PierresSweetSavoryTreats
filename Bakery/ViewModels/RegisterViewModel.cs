@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Bakery.Models;
+namespace Bakery.ViewModels;
 
 public class RegisterViewModel
 {

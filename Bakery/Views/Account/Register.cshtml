@@ -6,7 +6,7 @@
 
 <main>
     <section>
-        <h2>Log In</h2>
+        <h3>Register New User</h3>
         @if (!ViewData.ModelState.IsValid)
         {
             @Html.ValidationSummary("Please fix the following error(s) and resubmit:")
@@ -47,7 +47,5 @@
                 <input type="submit" value="Login" />
             </div>
         }
-
-        <p>If you do not have an account, you need to @Html.ActionLink("Register", "Register").</p>
     </section>
 </main>
