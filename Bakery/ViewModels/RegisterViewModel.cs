@@ -15,7 +15,7 @@ public class RegisterViewModel
     [Required]
     [DataType(DataType.Date)]
     [Display(Name = "Date of Birth")]
-    public string DOB { get; set; }
+    public DateTime DOB { get; set; }
 
     [Required]
     [Display(Name = "Username")]

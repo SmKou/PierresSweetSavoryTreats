@@ -23,7 +23,8 @@ class Program
         builder.Services.AddDbContext<BakeryContext>(
             dbContextOptions => dbContextOptions
             .UseMySql(
-                builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"]
+                builder.Configuration["ConnectionStrings:DefaultConnection"], 
+                ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"]
             )
             )
         );

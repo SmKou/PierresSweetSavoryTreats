@@ -78,7 +78,7 @@ public class AccountController : Controller
                 return RedirectToAction("Index");
             else
             {
-                foreach (IndentityError error in result.Errors)
+                foreach (IdentityError error in result.Errors)
                     ModelState.AddModelError("", error.Description);
                 return View(model);
             }
@@ -100,18 +100,16 @@ public class AccountController : Controller
         else
         {
             string login = model.UserNameOrEmail;
-            using (var cxt = new BakeryContext())
-            {
-                var user = cxt.Users.FirstOrDefault(user => user.Email == login);
-                if (user != null)
-                    login = user.UserName;
-            }
-            Microsoft.AspNetCore.Identity.SignInResult result = await _signinManager.PasswordSignInAsync(model.login, model.Password, isPersistent: true, lockoutOnFailure: false);
-            if (result.Suceeded)
+            ApplicationUser user = _db.Users.FirstOrDefault(user => user.Email == model.UserNameOrEmail);
+            if (user != null)
+                login = user.UserName;
+
+            Microsoft.AspNetCore.Identity.SignInResult result = await _signinManager.PasswordSignInAsync(login, model.Password, isPersistent: true, lockoutOnFailure: false);
+            if (result.Succeeded)
                 return RedirectToAction("Index");
             else
             {
-                ModelState.AddModelError("", "There is something wrong with your email or password. Please try again.");
+                ModelState.AddModelError("", "There is something wrong with your login or password. Please try again.");
                 return View(model);
             }
         }
