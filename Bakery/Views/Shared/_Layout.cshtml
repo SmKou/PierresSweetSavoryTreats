@@ -23,8 +23,8 @@
                 @if (ViewBag.IsLoggedIn)
                 {
                     <li>Hello @ViewBag.Name</li>
-                    <li>@Html.ActionLink("Catalog", "Index", "Account")</li>
-                    <li>@Html.ActionLink("Profile", "Details", "Account")</li>
+                    <li>@Html.ActionLink("Catalog", "Index", "Menu")</li>
+                    <li>@Html.ActionLink("Profile", "Profile", "Account")</li>
                     <li>@Html.ActionLink("Logout", "LogOut", "Account")</li>
                 }
                 else

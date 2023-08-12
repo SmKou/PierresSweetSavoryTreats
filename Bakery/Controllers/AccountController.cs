@@ -8,7 +8,6 @@ using Bakery.Models;
 
 namespace Bakery.Controllers;
 
-[Authorize]
 public class AccountController : Controller
 {
     private readonly BakeryContext _db;
@@ -22,37 +21,17 @@ public class AccountController : Controller
         _signinManager = signinManager;
     }
 
-    /* View All Treats and Flavors, Edit and Delete, [link] Create item */
-    public ActionResult Index()
+    [Authorize]
+    public ActionResult Profile()
     {
         return View();
     }
 
-    /* Details, Create treat and/or flavor, add one to other */
-    public ActionResult Create(TreatFlavor item, bool type)
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public ActionResult Create(TreatFlavor item, bool type, bool bind)
-    {
-        return View();
-    }
-
-    /* Account details and edit */
-    public ActionResult Details(int id)
-    {
-        return View();
-    }
-
-    [AllowAnonymous]
     public IActionResult Register()
     {
         return View();
     }
 
-    // [AllowAnonymous]
     [HttpPost]
     public async Task<ActionResult> Register(RegisterViewModel model)
     {
@@ -75,7 +54,13 @@ public class AccountController : Controller
             };
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
-                return RedirectToAction("Index");
+            {
+                Microsoft.AspNetCore.Identity.SignInResult signinresult = await _signinManager.PasswordSignInAsync(model.UserName, model.Password, isPersistent: true, lockoutOnFailure: false);
+                if (signinresult.Succeeded)
+                    return RedirectToAction("Index");
+                else
+                    return RedirectToAction("Login");
+            }
             else
             {
                 foreach (IdentityError error in result.Errors)
@@ -85,13 +70,11 @@ public class AccountController : Controller
         }
     }
 
-    [AllowAnonymous]
     public IActionResult Login()
     {
         return View();
     }
 
-    // [AllowAnonymous]
     [HttpPost]
     public async Task<ActionResult> Login(LoginViewModel model)
     {

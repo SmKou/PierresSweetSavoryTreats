@@ -1,19 +1,20 @@
 @{
     Layout = "_Layout";
 }
-@using Bakery.ViewModels;
-@model RegisterViewModel
+@using Bakery.Models;
+@model ApplicationUser
 
 <main>
     <section>
-        <h3>Register New User</h3>
+        <h3>Profile</h3>
         @if (!ViewData.ModelState.IsValid)
         {
             @Html.ValidationSummary("Please fix the following error(s) and resubmit:")
         }
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm(new { @class = "details-form"}))
         {
+            @Html.HiddenFor(model => model.Id)
             <div class="form-entry">
                 @Html.LabelFor(model => model.FirstName)
                 @Html.TextBoxFor(model => model.FirstName)
@@ -47,5 +48,6 @@
                 <input type="submit" value="Register" />
             </div>
         }
+
     </section>
 </main>
