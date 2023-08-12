@@ -19,7 +19,6 @@ public class MenuController : Controller
         _userManager = userManager;
     }
 
-    /* View All Treats and Flavors, Edit and Delete*/
     public ActionResult Index()
     {
         return View();
