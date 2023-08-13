@@ -77,7 +77,7 @@ public class AccountController : Controller
             return View(avm);
         }
 
-        if (!string.IsNullOrEmpty(avm.PasswordConfirm))
+        if (!string.IsNullOrEmpty(avm.Password) && !string.IsNullOrEmpty(avm.PasswordConfirm))
         {
             IdentityResult pwresult = await _userManager.ChangePasswordAsync(user, avm.Password, avm.PasswordConfirm);
             if (!pwresult.Succeeded)
@@ -88,7 +88,6 @@ public class AccountController : Controller
             }
         }
 
-        TempData["Confirmation"] = "Profile updated.";
         return RedirectToAction("Profile");
     }
 
