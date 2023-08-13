@@ -60,7 +60,7 @@ public class TreatsController : Controller
     }
 
     [HttpPost]
-    public ActionResult RemoveTreat(int joinId)
+    public ActionResult RemoveFlavor(int joinId)
     {
         TreatFlavor rm = _db.TreatFlavors.SingleOrDefault(join => join.TreatFlavorId == joinId);
         int treatId = rm.TreatId;

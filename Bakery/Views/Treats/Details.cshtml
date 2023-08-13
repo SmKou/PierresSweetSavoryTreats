@@ -8,7 +8,8 @@
     <section>
         <h3>@Model.Treat.Name</h3>
         <p>@Model.Treat.Description</p>
-
+    </section>
+    <section>
         @if (Model.Treat.Flavors.Count == 0)
         {
             <p>No flavors have been associated with this treat yet.</p>
@@ -24,7 +25,7 @@
                     @Html.DropDownList("FlavorId")
                 </div>
                 <div class="form-submit">
-                    <input type="submit" value="Add Treat" />
+                    <input type="submit" value="Add Flavor" />
                 </div>
             }
         }

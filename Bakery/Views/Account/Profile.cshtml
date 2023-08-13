@@ -18,7 +18,7 @@
             @Html.ValidationSummary("Please fix the following error(s) and resubmit:")
         }
 
-        @using (Html.BeginForm("Edit", "Account", new { @class = "details-form"}))
+        @using (Html.BeginForm("Profile", "Account", FormMethod.Post, new { @class = "details-form"}))
         {
             <div class="form-entry">
                 @Html.LabelFor(model => model.FirstName)

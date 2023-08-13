@@ -20,6 +20,6 @@ public class InventoryController : Controller
         List<Treat> treats = _db.Treats.ToList();
         model.Add("Flavors", flavors);
         model.Add("Treats", treats);
-        return View();
+        return View(model);
     }
 }

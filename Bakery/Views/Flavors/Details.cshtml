@@ -8,12 +8,13 @@
     <section>
         <h3>@Model.Flavor.Name</h3>
         <p>@Model.Flavor.Description</p>
-
+    </section>
+    <section>
         @if (Model.Flavor.Treats.Count == 0)
         {
             <p>No treats have been associated with this flavor yet.</p>
         }
-
+        
         @if (User.Identity.IsAuthenticated && ViewBag.TreatId != null)
         {
             @using (Html.BeginForm("AddTreat", "Flavors", FormMethod.Post))
