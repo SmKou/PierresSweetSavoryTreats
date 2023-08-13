@@ -14,13 +14,13 @@
     <header>
         <h1>@Html.ActionLink("Pierre's Sweet and Savory Treats", "Login", "Account")</h1>
         <ul class="nav">
-            @if (!User.Identity.Authenticated)
+            @if (!User.Identity.IsAuthenticated)
             {
                 <li>@Html.ActionLink("Catalog", "Index", "Home")</li>
             }
             else
             {
-                <li>Hello @User.Identity.FirstName</li>
+                <li>@User.Identity.Name</li>
                 <li>@Html.ActionLink("Catalog", "Index", "Inventory")</li>
                 <li>@Html.ActionLink("Profile", "Profile", "Account")</li>
                 <li>@Html.ActionLink("Logout", "LogOut", "Account")</li>
@@ -29,14 +29,13 @@
     </header>
     @RenderBody()
     <footer>
-        @if (!User.Identity.Authenticated)
+        @if (!User.Identity.IsAuthenticated)
         {
             <ul class="nav">
-                <li>@Html.ActionLink("Login", "Login", "Account")
-                <li>@Html.ActionLink
+                <li>@Html.ActionLink("Login", "Login", "Account")</li>
+                <li>@Html.ActionLink("Register", "Register", "Account")</li>
             </ul>
         }
-        
     </footer>
 </body>
 </html>

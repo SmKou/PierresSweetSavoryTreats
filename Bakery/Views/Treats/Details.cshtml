@@ -14,7 +14,7 @@
             <p>No flavors have been associated with this treat yet.</p>
         }
 
-        @if (User.Identity.Authenticated && ViewBag.FlavorId != null)
+        @if (User.Identity.IsAuthenticated && ViewBag.FlavorId != null)
         {
             @using (Html.BeginForm("AddFlavor", "Treats", FormMethod.Post))
             {
@@ -34,7 +34,7 @@
             {
                 <li>
                     <a class="non-link" href="#">@join.Flavor.Name</a>
-                    @if (User.Identity.Authenticated)
+                    @if (User.Identity.IsAuthenticated)
                     {
                         @using (Html.BeginForm("RemoveFlavor", "Treats", FormMethod.Post))
                         {

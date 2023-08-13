@@ -7,14 +7,14 @@
 <main>
     <section>
         <h3>@Model.Flavor.Name</h3>
-        <p>@Model.Description.Name</p>
+        <p>@Model.Flavor.Description</p>
 
         @if (Model.Flavor.Treats.Count == 0)
         {
             <p>No treats have been associated with this flavor yet.</p>
         }
 
-        @if (User.Identity.Authenticated && ViewBag.TreatId != null)
+        @if (User.Identity.IsAuthenticated && ViewBag.TreatId != null)
         {
             @using (Html.BeginForm("AddTreat", "Flavors", FormMethod.Post))
             {
@@ -34,7 +34,7 @@
             {
                 <li>
                     <a class="non-link" href="#">@join.Treat.Name</a>
-                    @if (User.Identity.Authenticated)
+                    @if (User.Identity.IsAuthenticated)
                     {
                         @using (Html.BeginForm("RemoveTreat", "Flavors", FormMethod.Post))
                         {

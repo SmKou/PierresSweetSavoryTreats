@@ -30,7 +30,7 @@ public class FlavorsController : Controller
         }
         _db.Flavors.Add(model);
         _db.SaveChanges();
-        return RedirectToAction("Details", new { id = model.FlavorId })
+        return RedirectToAction("Details", new { id = model.FlavorId });
     }
 
     [AllowAnonymous]
@@ -89,7 +89,7 @@ public class FlavorsController : Controller
     public ActionResult Delete(int id)
     {
         Flavor rm = _db.Flavors.SingleOrDefault(flavor => flavor.FlavorId == id);
-        _db.Flavors.Remove(flavor);
+        _db.Flavors.Remove(rm);
         _db.SaveChanges();
         return RedirectToAction("Index", "Inventory");
     }
