@@ -1,0 +1,51 @@
+@{
+    Layout = "_Layout";
+}
+@using Bakery.Models;
+@model TreatFlavor
+
+<main>
+    <section>
+        <h3>@Model.Flavor.Name</h3>
+        <p>@Model.Description.Name</p>
+
+        @if (Model.Flavor.Treats.Count == 0)
+        {
+            <p>No treats have been associated with this flavor yet.</p>
+        }
+
+        @if (User.Identity.Authenticated && ViewBag.TreatId != null)
+        {
+            @using (Html.BeginForm("AddTreat", "Flavors", FormMethod.Post))
+            {
+                @Html.HiddenFor(model => model.FlavorId)
+                <div class="form-entry">
+                    @Html.Label("Select treat")
+                    @Html.DropDownList("TreatId")
+                </div>
+                <div class="form-submit">
+                    <input type="submit" value="Add Treat" />
+                </div>
+            }
+        }
+
+        <ul class="items-list">
+            @foreach (TreatFlavor join in Model.Flavor.Treats)
+            {
+                <li>
+                    <a class="non-link" href="#">@join.Treat.Name</a>
+                    @if (User.Identity.Authenticated)
+                    {
+                        @using (Html.BeginForm("RemoveTreat", "Flavors", FormMethod.Post))
+                        {
+                            @Html.Hidden("joinId", @join.TreatFlavorId)
+                            <span class="list-submit">
+                                <input type="submit" value="Delete" />
+                            </span>
+                        }
+                    }
+                </li>
+            }
+        </ul>
+    </section>
+</main>

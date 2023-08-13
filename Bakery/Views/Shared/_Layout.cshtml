@@ -14,27 +14,29 @@
     <header>
         <h1>@Html.ActionLink("Pierre's Sweet and Savory Treats", "Login", "Account")</h1>
         <ul class="nav">
-            @if (ViewBag.IsLoggedIn == null)
+            @if (!User.Identity.Authenticated)
             {
                 <li>@Html.ActionLink("Catalog", "Index", "Home")</li>
             }
             else
             {
-                @if (ViewBag.IsLoggedIn)
-                {
-                    <li>Hello @ViewBag.Name</li>
-                    <li>@Html.ActionLink("Catalog", "Index", "Menu")</li>
-                    <li>@Html.ActionLink("Profile", "Profile", "Account")</li>
-                    <li>@Html.ActionLink("Logout", "LogOut", "Account")</li>
-                }
-                else
-                {
-                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                    <li>@Html.ActionLink("Register", "Register", "Account")</li>
-                }
+                <li>Hello @User.Identity.FirstName</li>
+                <li>@Html.ActionLink("Catalog", "Index", "Inventory")</li>
+                <li>@Html.ActionLink("Profile", "Profile", "Account")</li>
+                <li>@Html.ActionLink("Logout", "LogOut", "Account")</li>
             }
         </ul>
     </header>
     @RenderBody()
+    <footer>
+        @if (!User.Identity.Authenticated)
+        {
+            <ul class="nav">
+                <li>@Html.ActionLink("Login", "Login", "Account")
+                <li>@Html.ActionLink
+            </ul>
+        }
+        
+    </footer>
 </body>
 </html>

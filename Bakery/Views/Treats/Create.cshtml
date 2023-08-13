@@ -6,10 +6,9 @@
 
 <main>
     <section>
-        <h3>Edit Treat: @Model.Name</h3>
+        <h3>Add Treat</h3>
         @using (Html.BeginForm())
         {
-            @Html.HiddenFor(model => model.TreatId)
             <div class="form-entry">
                 @Html.LabelFor(model => model.Name)
                 @Html.TextBoxFor(model => model.Name)
@@ -19,7 +18,7 @@
                 @Html.TextBoxFor(model => model.Description)
             </div>
             <div class="form-submit">
-                <input type="submit" value="Save" />
+                <input type="submit" value="Add Treat" />
             </div>
         }
     </section>

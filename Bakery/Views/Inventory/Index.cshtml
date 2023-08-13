@@ -1,0 +1,51 @@
+@{
+    Layout = "_Layout";
+}
+@using Bakery.Models;
+
+<main>
+    <section>
+        <div class="section-title">
+            <h3>Flavors</h3>
+            @Html.ActionLink("Add Flavor", "Create", "Flavors")
+        </div>
+        
+        @if (Model["Flavors"].Count == 0)
+        {
+            <p>There are no flavors offered yet.</p>
+        }
+
+        <ul class="items-list">
+            @foreach (Flavor flavor in Model["Flavors"])
+            {
+                <li>
+                    @Html.ActionLink(@flavor.Name, "Details", "Flavors", new { id = flavor.FlavorId })
+                    @Html.ActionLink("Edit", "Edit", "Flavors", new { id = flavor.FlavorId })
+                    @Html.ActionLink("Delete", "Delete", "Flavors", new { id = flavor.FlavorId })
+                </li>
+            }
+        </ul>
+    </section>
+    <section>
+        <div class="section-title">
+            <h3>Treats</h3>
+            @Html.ActionLink("Add Treat", "Create", "Treats")
+        </div>
+
+        @if (Model["Treats"].Count == 0)
+        {
+            <p>There are no treats offered yet.</p>
+        }
+
+        <ul class="items-list">
+            @foreach (Treat treat in Model["Treats"])
+            {
+                <li>
+                    @Html.ActionLink(@treat.Name, "Details", "Treats", new { id = treat.TreatId })
+                    @Html.ActionLink("Edit", "Edit", "Treats", new { id = treat.TreatId })
+                    @Html.ActionLink("Delete", "Delete", "Treats", new { id = treat.TreatId })
+                </li>
+            }
+        </ul>
+    </section>
+</main>
