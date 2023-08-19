@@ -96,6 +96,9 @@ public class AccountController : Controller
         return View();
     }
 
+    /* Note to Self */
+    // Fix exception thrown when fields empty
+
     [HttpPost]
     public async Task<ActionResult> Register(AccountViewModel rvm)
     {

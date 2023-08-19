@@ -82,6 +82,11 @@ If the app does not launch in the browser:
 
 ## Known Bugs
 
+![Bugs](Bugs.png)
+
+- User not able to register if the user tries to register without completing all input requirements
+- Breaks if the user submits an incomplete form for treats or flavors
+
 Please report any issues in using the app.
 
 ## License
