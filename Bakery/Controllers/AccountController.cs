@@ -46,8 +46,16 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<ActionResult> Profile(AccountViewModel avm)
     {
+        if (!ModelState.IsValid)
+            return View(avm);
         string userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         ApplicationUser user = await _userManager.FindByIdAsync(userId);
+
+        if (user.FirstName == avm.FirstName & user.LastName == avm.LastName && user.DOB == avm.DOB && user.Email == avm.Email && user.UserName == avm.UserName)
+        {
+            ViewBag.Confirmation = "No changes made.";
+            return View(avm);
+        }
 
         if (avm.UserName != user.UserName && avm.Email != user.Email)
         {
@@ -88,6 +96,7 @@ public class AccountController : Controller
             }
         }
 
+        TempData["Confirmation"] = "Account updated.";
         return RedirectToAction("Profile");
     }
 
@@ -100,7 +109,7 @@ public class AccountController : Controller
     // Fix exception thrown when fields empty
 
     [HttpPost]
-    public async Task<ActionResult> Register(AccountViewModel rvm)
+    public async Task<ActionResult> Register(RegisterViewModel rvm)
     {
         if (!ModelState.IsValid)
             return View(rvm);

@@ -7,6 +7,10 @@
 <main>
     <section>
         <h3>Edit Flavor: @Model.Name</h3>
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @Html.ValidationSummary("Please fix the following error(s) and resubmit:")
+        }
         @using (Html.BeginForm())
         {
             @Html.HiddenFor(model => model.FlavorId)

@@ -17,6 +17,10 @@
 
         @if (User.Identity.IsAuthenticated && ViewBag.FlavorId != null)
         {
+            @if (!ViewData.ModelState.IsValid)
+            {
+                @Html.ValidationSummary("Please fix the following error(s) and resubmit:")
+            }
             @using (Html.BeginForm("AddFlavor", "Treats", FormMethod.Post))
             {
                 @Html.HiddenFor(model => model.TreatId)

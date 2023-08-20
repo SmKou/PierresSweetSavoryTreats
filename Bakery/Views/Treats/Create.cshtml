@@ -7,6 +7,10 @@
 <main>
     <section>
         <h3>Add Treat</h3>
+        @if (!ViewData.ModelState.IsValid)
+        {
+            @Html.ValidationSummary("Please fix the following error(s) and resubmit:")
+        }
         @using (Html.BeginForm())
         {
             <div class="form-entry">

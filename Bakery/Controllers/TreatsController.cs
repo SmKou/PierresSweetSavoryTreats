@@ -22,6 +22,8 @@ public class TreatsController : Controller
     [HttpPost]
     public ActionResult Create(Treat model)
     {
+        if (!ModelState.IsValid)
+            return View(model);
         bool hasEntity = _db.Treats.Any(entity => entity.Name == model.Name);
         if (hasEntity)
         {
@@ -50,6 +52,8 @@ public class TreatsController : Controller
     [HttpPost]
     public ActionResult AddFlavor(TreatFlavor model)
     {
+        if (!ModelState.IsValid)
+            return View(model);
         bool hasRelation = _db.TreatFlavors.Any(join => join.FlavorId == model.FlavorId && join.TreatId == model.TreatId);
         if (!hasRelation)
         {
@@ -81,6 +85,8 @@ public class TreatsController : Controller
     [HttpPost]
     public ActionResult Edit(Treat model)
     {
+        if (!ModelState.IsValid)
+            return View(model);
         _db.Treats.Update(model);
         _db.SaveChanges();
         return RedirectToAction("Details", new { id = model.TreatId });
