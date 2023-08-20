@@ -82,10 +82,8 @@ If the app does not launch in the browser:
 
 ## Known Bugs
 
-![Bugs](Bugs.png)
-
-- User not able to register if the user tries to register without completing all input requirements
-- Breaks if the user submits an incomplete form for treats or flavors
+- FIXED: Register page lists invalid or incomplete fields
+- FIXED: User cannot submit invalid or incomplete forms for creating, editing or adding to treats and flavors
 
 Please report any issues in using the app.
 
